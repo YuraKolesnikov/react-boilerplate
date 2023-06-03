@@ -1,0 +1,60 @@
+.v-pref-card {
+  border: 1px solid var(--gray-3);
+  background-color: var(--gray-1);
+  padding: 20px 15px;
+  display: flex;
+  flex-flow: column;
+  transition: background-color .2s ease-in-out;
+
+  &:hover,
+  &.v-pref-card--active {
+    background-color: var(--gray-2);
+  }
+}
+
+.v-pref-card--top {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.v-pref-card--img-wrapper {
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.v-pref-card--img {
+  height: 100%;
+  width: 100%;
+}
+
+.v-pref-card--toggle {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.v-pref-card--status {
+  color: var(--gray-4);
+  font-weight: var(--font-light);
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.v-pref-card--bottom {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.v-pref-card--text {
+  font-weight: var(--font-regular);
+  font-size: 13px;
+  line-height: 125%;
+  height: 48px;
+  width: 100%;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}

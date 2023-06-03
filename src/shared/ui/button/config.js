@@ -1,0 +1,13 @@
+export const BUTTON_STYLES = {
+	PRIMARY: 'primary',
+	SECONDARY: 'secondary'
+}
+
+BUTTON_STYLES.LIST = [BUTTON_STYLES.PRIMARY, BUTTON_STYLES.SECONDARY]
+
+export const TEXT_SIZES = {
+	MEDIUM: 'medium',
+	LARGE: 'large'
+}
+
+TEXT_SIZES.LIST = [TEXT_SIZES.MEDIUM, TEXT_SIZES.LARGE]

@@ -1,0 +1,29 @@
+.v-sidebar {
+  max-width: 270px;
+  width: 100%;
+  padding-right: 40px;
+}
+
+.v-sidebar--img {
+  margin-bottom: 50px;
+}
+
+.v-sidebar--subtitle {
+  margin-bottom: 30px;
+}
+
+.v-sidebar--email {
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.v-sidebar--cta {
+  color: var(--gray-5);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+}
+
+.v-sidebar--info-wrapper {
+  margin-top: 50px;
+}
