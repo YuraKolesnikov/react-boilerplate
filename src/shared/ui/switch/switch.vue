@@ -4,6 +4,7 @@
 			:id="id"
 			:name="name"
 			:checked="checked"
+			@change="$emit('change', $event)"
 			type="checkbox"
 			class="v-switch--input">
 		<span class="v-switch--toggle" />

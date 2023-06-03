@@ -11,12 +11,13 @@
 					<div>
 						<div class="cards">
 							<v-pref-card
-								v-for="item in mockData"
+								v-for="item in data"
 								:key="item.site"
 								:id="item.id"
 								:subscribed="item.subscribed"
 								:caption="item.caption"
 								:img-path="item.imgPath"
+								@toggleCard="toggleItem"
 							/>
 						</div>
 					</div>
@@ -29,7 +30,7 @@
 						Save changes
 					</v-button>
 					<v-button
-						@click="handleClick"
+						@click="unsubscribeAll"
 						:button-style="BUTTON_STYLES.SECONDARY"
 						:text-size="TEXT_SIZES.MEDIUM">
 						Unsubscribe from all of the above. It's over
@@ -37,10 +38,12 @@
 				</footer>
 			</div>
 		</div>
+		{{data}}
 	</div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import { VButton, VSubtitle, BUTTON_STYLES, TEXT_SIZES, } from 'shared/ui'
 import { VPrefCard } from 'features'
 import { VSidebar } from 'widgets'
@@ -56,58 +59,18 @@ export default {
 		return {
 			BUTTON_STYLES,
 			TEXT_SIZES,
-			mockData: [
-				{
-					"id": 1,
-					"site": "trainyrbrain",
-					"caption": "True/False Quiz. Keep your brain fit!",
-					"subscribed": true,
-					"imgPath": "./assets/1.png"
-				},
-				{
-					"id": 2,
-					"site": "ynquiz",
-					"caption": "Easy Yes/No Quiz. Distinguish facts from fiction!",
-					"subscribed": true,
-					"imgPath": "./assets/2.png"
-				},
-				{
-					"id": 3,
-					"site": "finditquiz",
-					"caption": "Fun photo Quiz. Match words and names to pictures of objects and people.",
-					"subscribed": false,
-					"imgPath": "./assets/3.png"
-				},
-				{
-					"id": 4,
-					"site": "moviequizonline",
-					"caption": "Movie Photo Quiz. Guess the film by a still!",
-					"subscribed": true,
-					"imgPath": "./assets/4.png"
-				},
-				{
-					"id": 5,
-					"site": "findsuperstar",
-					"caption": "Celebrity Photo Quiz. Guess the star by a photo!",
-					"subscribed": false,
-					"imgPath": "./assets/5.png"
-				},
-				{
-					"id": 6,
-					"site": "whatcountry",
-					"caption": "Geography quiz. Guess the country by the photo (fact/description)",
-					"subscribed": false,
-					"imgPath": "./assets/6.png"
-				}
-			]
 		}
 	},
 	methods: {
+		...mapMutations(['toggleItem', 'unsubscribeAll']),
 		handleClick(e) {
 			e.preventDefault()
 			console.log('YEET')
 		}
-	}
+	},
+	computed: {
+		...mapState(['data']),
+	},
 }
 </script>
 

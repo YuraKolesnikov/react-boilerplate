@@ -6,7 +6,7 @@
 			</div>
 			<div class="v-pref-card--toggle">
 				<span class="v-pref-card--status">{{ status }}</span>
-				<v-switch :id="id" :checked="subscribed" name="toggle_subscribe" />
+				<v-switch :id="id" :checked="subscribed" @change="onPrefToggle" name="toggle_subscribe" />
 			</div>
 		</div>
 		<div class="v-pref-card--bottom">
@@ -37,6 +37,11 @@ export default {
 		},
 		status() {
 			return this.subscribed ? 'Subscribed' : 'Unsubscribed'
+		}
+	},
+	methods: {
+		onPrefToggle(e) {
+			this.$emit('toggleCard', { id: this.id, newStatus: e.target.checked })
 		}
 	}
 }
