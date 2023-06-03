@@ -22,9 +22,9 @@ export default {
 			return ['v-progress--text', this.value > 0 && 'v-progress--text-colored']
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">
-@import "./progress";
+@import "./progress"
 </style>

@@ -8,7 +8,7 @@
   min-width: 220px;
   border-radius: 8px;
   border: 1px solid transparent;
-  transition: box-shadow .2s ease-in-out;
+  transition: box-shadow .2s ease-in-out, opacity .2s ease-in-out;
   will-change: box-shadow;
 
   &:focus,
@@ -19,6 +19,12 @@
 
   &:active {
     box-shadow: none;
+  }
+
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: .5;
   }
 }
 

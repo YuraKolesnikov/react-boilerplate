@@ -1,7 +1,8 @@
 <template>
 	<button
 		:class="classList"
-		@click="$emit('click', $event)">
+		@click="$emit('click', $event)"
+		:disabled="disabled">
 		<slot />
 	</button>
 </template>
@@ -29,7 +30,7 @@ export default {
 	},
 	computed: {
 		classList() {
-			return ['v-button', `v-button--${this.buttonStyle}`, `v-button--${this.textSize}`]
+			return ['v-button', `v-button--${this.buttonStyle}`, `v-button--${this.textSize}`, this.disabled && 'disabled']
 		}
 	},
 }
