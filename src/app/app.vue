@@ -42,12 +42,13 @@
         </footer>
       </div>
     </div>
-		<p>{{ happiness }}</p>
+		<p>Old value: {{happiness}}</p>
+		<p>Calculated new: {{calculatedNew}}</p>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import { VButton, VSubtitle, BUTTON_STYLES, TEXT_SIZES } from 'shared/ui'
 import { VPrefCard } from 'features'
 import { VSidebar } from 'widgets'
@@ -67,13 +68,14 @@ export default {
   },
   methods: {
     ...mapActions(['toggleItem', 'unsubscribeAll']),
-    handleClick(e) {
-      e.preventDefault()
-      console.log('YEET')
+		...mapMutations(['updateHappinessValues']),
+    handleClick() {
+			this.updateHappinessValues(this.calculatedNew)
     },
   },
   computed: {
     ...mapState(['entertainments', 'happiness']),
+		...mapGetters(['calculatedNew'])
   }
 }
 </script>

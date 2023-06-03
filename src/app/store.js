@@ -65,10 +65,7 @@ const initialHappiness = entertainments.reduce((acc, curr) => {
 
 export default new Vuex.Store({
   state: {
-    happiness: {
-      old: initialHappiness,
-      new: initialHappiness,
-    },
+    happiness: initialHappiness,
     entertainments,
   },
   mutations: {
@@ -83,10 +80,7 @@ export default new Vuex.Store({
       }))
     },
     updateHappinessValues(state, payload) {
-      state.happiness = {
-        ...state.happiness,
-        ...payload
-      }
+      state.happiness = payload
     },
   },
   actions: {
@@ -96,14 +90,21 @@ export default new Vuex.Store({
       if (itemIndex >= 0) {
         const itemToUpdate = { ...state.entertainments[itemIndex], subscribed: newStatus }
         commit('toggleItem', { index: itemIndex, item: itemToUpdate })
-
-        const updatedHappinessValue = !!newStatus ? state.happiness.new + itemToUpdate.value : state.happiness.new - itemToUpdate.value
-        commit('updateHappinessValues', { new: updatedHappinessValue })
       }
     },
     unsubscribeAll({ commit, state }) {
       commit('unsubscribeAll')
-      commit('updateHappinessValues', { new: 0 })
+      commit('updateHappinessValues', 0)
+    }
+  },
+  getters: {
+    calculatedNew(state) {
+      return state.entertainments.reduce((acc, curr) => {
+        if (curr.subscribed) {
+          acc += curr.value
+        }
+        return acc
+      }, 0)
     }
   }
 })

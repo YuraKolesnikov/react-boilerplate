@@ -1,12 +1,15 @@
 <template>
 	<aside class="v-sidebar">
 		<div class="v-sidebar--img">
-			<img src="../../app/assets/logo.png" alt="">
+			<img src="assets/logo.png" alt="">
 		</div>
 		<v-subtitle :class-name="'v-sidebar--subtitle'">
 			How much fun <br /> do you want in your life?
 		</v-subtitle>
 		<p class="v-sidebar--email">harry.simon@yahoo.com</p>
+		<div class="v-sidebar--progress-wrapper">
+			<v-progress :value="happiness" />
+		</div>
 		<p class="v-sidebar--cta">
 			<v-link
 				to="https://www.youtube.com/watch?v=X62FRKpFk9Y"
@@ -23,15 +26,20 @@
 </template>
 
 <script>
-import { VSubtitle, VLink } from 'shared/ui'
+import { mapState } from 'vuex'
+import { VProgress, VSubtitle, VLink } from 'shared/ui'
 import { VInfo } from 'widgets'
 
 export default {
 	name: 'v-sidebar',
 	components: {
+		VProgress,
 		VSubtitle,
 		VLink,
 		VInfo
+	},
+	computed: {
+		...mapState(['happiness'])
 	}
 }
 </script>
