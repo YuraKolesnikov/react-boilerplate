@@ -13,7 +13,7 @@
           <div>
             <div class="cards">
               <v-pref-card
-                v-for="item in data"
+                v-for="item in entertainments"
                 :key="item.site"
                 :id="item.id"
                 :subscribed="item.subscribed"
@@ -42,11 +42,12 @@
         </footer>
       </div>
     </div>
+		<p>{{ happiness }}</p>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { VButton, VSubtitle, BUTTON_STYLES, TEXT_SIZES } from 'shared/ui'
 import { VPrefCard } from 'features'
 import { VSidebar } from 'widgets'
@@ -65,15 +66,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['toggleItem', 'unsubscribeAll']),
+    ...mapActions(['toggleItem', 'unsubscribeAll']),
     handleClick(e) {
       e.preventDefault()
       console.log('YEET')
     },
   },
   computed: {
-    ...mapState(['data']),
-  },
+    ...mapState(['entertainments', 'happiness']),
+  }
 }
 </script>
 
