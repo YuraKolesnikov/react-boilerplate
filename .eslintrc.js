@@ -4,29 +4,34 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true,
   },
-  extends: ['plugin:react/recommended', 'standard-with-typescript'],
+  extends: [
+    'plugin:vue/recommended',
+    'standard',
+  ],
   overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 2021,
     sourceType: 'module',
-    project: [path.resolve(__dirname, 'tsconfig.json')],
   },
-  plugins: ['react'],
+  plugins: ['vue'],
   rules: {
     'comma-dangle': ['error', 'only-multiline'],
     'no-underscore-dangle': 'off',
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'object-curly-spacing': ['error', 'always'],
-    'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/space-before-function-paren': 0,
-    '@typescript-eslint/no-floating-promises': 0,
     'no-tabs': 'off',
+    'vue/no-v-html': 'off', // Disable v-html warning if needed
   },
   settings: {
-    react: {
-      version: '17.0.2',
+    'import/resolver': {
+      webpack: {
+        config: 'node_modules/@vue/cli-service/webpack.config.js',
+      },
     },
+    'import/core-modules': ['vue'], // Add 'vue' as a core module
+    vue: {
+      version: '2', // Specify Vue version as '2'
+    }
   },
 }
