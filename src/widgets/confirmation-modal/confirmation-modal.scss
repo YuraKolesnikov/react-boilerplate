@@ -1,0 +1,42 @@
+.v-confirmation-modal-body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.v-confirmation-modal-header {
+  font-weight: var(--font-bold);
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.v-confirmation-modal-caption {
+  margin-bottom: 40px;
+}
+
+.v-confirmation-modal-happiness-diff {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.v-confirmation-modal-happiness-num {
+  font-weight: var(--font-bold);
+  font-size: 40px;
+  margin-bottom: 10px;
+
+  &.v-confirmation-modal-happiness-num--red {
+    color: var(--accent-4);
+  }
+
+  &.v-confirmation-modal-happiness-num--green {
+    color: var(--accent-1)
+  }
+}
+
+.v-confirmation-modal-footer {
+  display: flex;
+  justify-content: center;
+}

@@ -4,9 +4,7 @@
 		<div class="content">
 			<header class="header">
 				<h1 class="title">Ok, let's change your preferences</h1>
-				<v-subtitle
-				>To unsubscribe, please uncheck the appropriate box(es).</v-subtitle
-				>
+				<v-subtitle>To unsubscribe, please uncheck the appropriate box(es).</v-subtitle>
 			</header>
 			<main class="main">
 				<div>
@@ -41,24 +39,12 @@
 				</v-button>
 			</footer>
 		</div>
-		<v-modal :is-open="isModalOpen" @close="setModal(false)">
-			<div class="modal-body">
-				<h2 class="modal-header">Hurrah!</h2>
-				<p class="modal-caption">Your subscription preferences have been succesfully saved</p>
-				<div class="modal-happiness-diff">
-					<p :class="numClassList">{{finalValue}}%</p>
-					<p class="modal-happiness-caption">{{savedMessage}}</p>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<v-button
-					@click="save"
-					:button-style="BUTTON_STYLES.PRIMARY"
-					:text-size="TEXT_SIZES.LARGE">
-					Ok, great!
-				</v-button>
-			</div>
-		</v-modal>
+		<v-confirmation-modal
+			:is-open="isModalOpen"
+			:value="finalValue"
+			@close="setModal(false)"
+			@save="save"
+		/>
 	</v-bordered-container>
 </template>
 
@@ -66,11 +52,12 @@
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import { VButton, VSubtitle, VModal, BUTTON_STYLES, TEXT_SIZES } from 'shared/ui'
 import { VPrefCard } from 'features'
-import { VSidebar } from 'widgets'
+import { VConfirmationModal, VSidebar } from 'widgets'
 import { VBorderedContainer } from 'shared/providers'
 
 export default {
   components: {
+		VConfirmationModal,
     VSidebar,
     VButton,
 		VModal,
@@ -91,17 +78,17 @@ export default {
     ...mapActions(['toggleItem', 'unsubscribeAll']),
 		...mapMutations(['updateHappinessValues']),
 		initiateSaveRoutine() {
-    	this.isModalOpen = true
+    	this.setModal(true)
 			this.routine = 'save'
 			this.finalValue = this.happinessDiff
 		},
 		initiateUnsubscribeRoutine() {
-    	this.isModalOpen = true
+    	this.setModal(true)
 			this.routine = 'unsubscribe'
 			this.finalValue = 0 - this.happiness
 		},
 		save() {
-			this.isModalOpen = false
+			this.setModal(false)
 
 			if (this.routine === 'save') {
 				this.updateHappinessValues(this.calculatedNew)
@@ -120,12 +107,6 @@ export default {
 		happinessDiff() {
     	return this.calculatedNew - this.happiness
 		},
-		numClassList() {
-    	return ['modal-happiness-num', this.finalValue > 0 ? 'modal-happiness-num--green' : 'modal-happiness-num--red']
-		},
-		savedMessage() {
-    	return this.finalValue > 0 ? 'Fun gained :)' : 'Fun lost :('
-		}
   },
 }
 </script>
