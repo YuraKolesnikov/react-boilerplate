@@ -33,7 +33,7 @@
 					Save changes
 				</v-button>
 				<v-button
-					@click="unsubscribeAll"
+					@click="initiateUnsubscribeRoutine"
 					:button-style="BUTTON_STYLES.SECONDARY"
 					:text-size="TEXT_SIZES.MEDIUM"
 				>
@@ -46,7 +46,7 @@
 				<h2 class="modal-header">Hurrah!</h2>
 				<p class="modal-caption">Your subscription preferences have been succesfully saved</p>
 				<div class="modal-happiness-diff">
-					<p :class="numClassList">{{happinessDiff}}%</p>
+					<p :class="numClassList">{{finalValue}}%</p>
 					<p class="modal-happiness-caption">{{savedMessage}}</p>
 				</div>
 			</div>
@@ -83,6 +83,8 @@ export default {
       BUTTON_STYLES,
       TEXT_SIZES,
 			isModalOpen: false,
+			routine: null,
+			finalValue: 0
     }
   },
   methods: {
@@ -90,10 +92,23 @@ export default {
 		...mapMutations(['updateHappinessValues']),
 		initiateSaveRoutine() {
     	this.isModalOpen = true
+			this.routine = 'save'
+			this.finalValue = this.happinessDiff
+		},
+		initiateUnsubscribeRoutine() {
+    	this.isModalOpen = true
+			this.routine = 'unsubscribe'
+			this.finalValue = 0 - this.happiness
 		},
 		save() {
-			this.updateHappinessValues(this.calculatedNew)
 			this.isModalOpen = false
+
+			if (this.routine === 'save') {
+				this.updateHappinessValues(this.calculatedNew)
+			} else if (this.routine === 'unsubscribe') {
+				this.unsubscribeAll()
+				this.updateHappinessValues(0)
+			}
 		},
 		setModal(modalState) {
     	this.isModalOpen = modalState
@@ -106,10 +121,10 @@ export default {
     	return this.calculatedNew - this.happiness
 		},
 		numClassList() {
-    	return ['modal-happiness-num', this.happinessDiff > 0 ? 'modal-happiness-num--green' : 'modal-happiness-num--red']
+    	return ['modal-happiness-num', this.finalValue > 0 ? 'modal-happiness-num--green' : 'modal-happiness-num--red']
 		},
 		savedMessage() {
-    	return this.happinessDiff > 0 ? 'Fun gained :)' : 'Fun lost :('
+    	return this.finalValue > 0 ? 'Fun gained :)' : 'Fun lost :('
 		}
   },
 }
