@@ -3,12 +3,14 @@
 		<div class="v-sidebar--img">
 			<img src="assets/logo.png" alt="">
 		</div>
-		<v-subtitle :class-name="'v-sidebar--subtitle'">
-			How much fun <br /> do you want in your life?
-		</v-subtitle>
-		<p class="v-sidebar--email">harry.simon@yahoo.com</p>
-		<div class="v-sidebar--progress-wrapper">
-			<v-progress :value="happiness" />
+		<div>
+			<v-subtitle :class-name="'v-sidebar--subtitle'">
+				How much fun <br /> do you want in your life?
+			</v-subtitle>
+			<p class="v-sidebar--email">harry.simon@yahoo.com</p>
+			<div class="v-sidebar--progress-wrapper">
+				<v-progress :value="happiness" />
+			</div>
 		</div>
 		<p class="v-sidebar--cta">
 			<v-link

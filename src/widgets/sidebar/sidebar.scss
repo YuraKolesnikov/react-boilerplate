@@ -2,10 +2,21 @@
   max-width: 270px;
   width: 100%;
   padding-right: 40px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
 }
 
 .v-sidebar--img {
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    margin-right: 20px;
+  }
 }
 
 .v-sidebar--subtitle {

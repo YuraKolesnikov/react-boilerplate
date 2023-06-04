@@ -2,7 +2,7 @@
 	<div :class="classList">
 		<div class="v-pref-card--top">
 			<div class="v-pref-card--img-wrapper">
-				<img alt="" class="v-pref-card--img">
+				<img :src="`assets/${id}.png`" alt="" class="v-pref-card--img">
 			</div>
 			<div class="v-pref-card--toggle">
 				<span class="v-pref-card--status">{{ status }}</span>
