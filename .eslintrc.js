@@ -3,33 +3,29 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:vue/recommended',
-    'standard',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'standard'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
   },
-  plugins: ['vue'],
+  plugins: ['react'],
   rules: {
     'comma-dangle': ['error', 'only-multiline'],
     'no-underscore-dangle': 'off',
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'object-curly-spacing': ['error', 'always'],
     'no-tabs': 'off',
-    'vue/no-v-html': 'off', // Disable v-html warning if needed
   },
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'node_modules/@vue/cli-service/webpack.config.js',
+        config: 'webpack.config.js', // Update the path to your webpack configuration file
       },
     },
-    'import/core-modules': ['vue'], // Add 'vue' as a core module
-    vue: {
-      version: '2', // Specify Vue version as '2'
-    }
+    'import/core-modules': ['react'], // Add 'react' as a core module
+    react: {
+      version: 'detect', // Automatically detect the installed React version
+    },
   },
-}
+};

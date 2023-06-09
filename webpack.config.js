@@ -6,7 +6,7 @@ const { buildWebpackConfig } = require('./config/build/build-webpack-config')
 
 const defaultExport = async env => {
   const paths = {
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    entry: path.resolve(__dirname, 'src', 'index.jsx'),
     build: path.resolve(__dirname, 'build'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     src: path.resolve(__dirname, 'src'),

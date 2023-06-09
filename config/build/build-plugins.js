@@ -1,8 +1,7 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const { VueLoaderPlugin } = require('vue-loader')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 function buildPlugins({ paths, isDev }) {
 	return [
@@ -21,10 +20,9 @@ function buildPlugins({ paths, isDev }) {
 		new BundleAnalyzerPlugin({
 			openAnalyzer: isDev,
 		}),
-		new VueLoaderPlugin(),
-	]
+	];
 }
 
 module.exports = {
 	buildPlugins,
-}
+};

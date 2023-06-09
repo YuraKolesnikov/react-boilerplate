@@ -1,10 +1,16 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function buildLoaders(options) {
-	const vueLoader = {
-		test: /\.vue$/,
-		loader: 'vue-loader',
-	}
+	const babelLoader = {
+		test: /\.jsx?$/,
+		exclude: /node_modules/,
+		use: {
+			loader: 'babel-loader',
+			options: {
+				presets: ['@babel/preset-react'],
+			},
+		},
+	};
 
 	const cssLoader = {
 		test: /\.s[ac]ss$/i,
@@ -13,12 +19,12 @@ function buildLoaders(options) {
 			'css-loader',
 			'sass-loader',
 		],
-	}
+	};
 
 	const svgLoader = {
 		test: /\.svg$/,
 		use: ['@svgr/webpack'],
-	}
+	};
 
 	const fileLoader = {
 		test: /\.(png|jpe?g|gif)$/i,
@@ -27,11 +33,11 @@ function buildLoaders(options) {
 				loader: 'file-loader',
 			},
 		],
-	}
+	};
 
-	return [vueLoader, cssLoader, svgLoader, fileLoader]
+	return [babelLoader, cssLoader, svgLoader, fileLoader];
 }
 
 module.exports = {
 	buildLoaders,
-}
+};
